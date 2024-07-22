@@ -1,0 +1,4 @@
+The EGGNOG annotation file is unzipped into your directory of choice
+1) cut -f2,4  1_annotations.tsv > EGGNOG_freetext_description.tsv
+The file is then cut to only consider the EGGNOG annotation and its corresponding description.
+
