@@ -1,0 +1,97 @@
+The following text document walks through where to obtain the files necessary to contstruct the Master dataset for use in this research project. It additionally highlights the commands used in Linux terminal to parse out the data required from the files
+
+1) In order to obtain an initial reference gene list the following file must be downloaded from Progenomes: https://progenomes.embl.de/data/repGenomes/progenomes3.proteins.representatives.fasta.bz2
+This file is decompressed and parsed for just the fasta headers.
+bzcat proteins.representatives.fasta.bz2 | pv | bzgrep '^>' > FASTA_HEADERS.txt
+The bzgrep command allows for the grepping of just the headers while the pv command allows for monitoring of the command's progress.
+sed 's/.GCA.*//' FASTA_HEADERS.txt This command extracts just the biosampleIDs from the fasta headers file.
+sort FASTA_HEADERS.txt | uniq > Biosample_IDs_filtered.txt This removes all duplicate entrys from the file leaving only the reference list of Biosample IDs.
+
+2) To assemble a large bacterial dataset both the gene and EGGNOG annotations for Proteobacteria, Firmicutes, Bacteriodetes, Actinobacteria and Euryarchaeota were downloaded.
+The gene annotations are available at the following links
+Proteobacteria: https://progenomes.embl.de/dumpAnnotation.cgi?p=Proteobacteria&t=ga&a=phylum
+Firmicutes: https://progenomes.embl.de/dumpAnnotation.cgi?p=Firmicutes&t=ga&a=phylum
+Bacteroidetes: https://progenomes.embl.de/dumpAnnotation.cgi?p=Bacteroidetes&t=ga&a=phylum
+Actinobacteria: https://progenomes.embl.de/dumpAnnotation.cgi?p=Actinobacteria&t=ga&a=phylum
+Euryarchaeota: https://progenomes.embl.de/dumpAnnotation.cgi?p=Euryarchaeota&t=ga&a=phylum
+
+The EGGNOG annotation files are available from the following links
+Proteobacteria: https://progenomes.embl.de/dumpAnnotation.cgi?p=Proteobacteria&t=ae&a=phylum
+Firmicutes: https://progenomes.embl.de/dumpAnnotation.cgi?p=Firmicutes&t=ae&a=phylum
+Bacteroidetes: https://progenomes.embl.de/dumpAnnotation.cgi?p=Bacteroidetes&t=ae&a=phylum
+Actinobacteria: https://progenomes.embl.de/dumpAnnotation.cgi?p=Actinobacteria&t=ae&a=phylum
+Euryarchaeota: https://progenomes.embl.de/dumpAnnotation.cgi?p=Euryarchaeota&t=ae&a=phylum
+
+3) The EGGNOG annotation files were then parsed to remove duplicates and only leaving a single representative for each bacterial species.
+awk 'NR==FNR {Biosample_IDs_filtered[$1]; next} $1 in Biosample_IDs_filtered' Biosample_IDs_filtered.txt Euryarchaeota.eggNOG_groups.tsv > Euryarchaeota.eggNOG_groups_filtered.tsv
+This was repeated for each of the 5 separate EGGNOG annotation files.
+
+4) The EGGNOG annotation files were then parsed to remove unnecessary columns
+cut -f1-6,9-13,15,18-20  Euryarchaeota.eggNOG_groups_filtered.tsv > Euryarchaeota.dataset.tsv
+This left only the Biosample_ID, Gene name, EGGNOG information, KEGG information, COG functional category and predicted protein name.
+This command was repeated on each of the eggNOG annotation files.
+
+5) cut -f1-2 phylum-Euryarchaeota.gene_annotations.tsv > phylum-Euryarchaeota.gene_annotations.filtered.tsv This command was run to give just the Gene ID and contig ID columns from the gene annotation file.
+
+6) awk -F'\t' 'NR==FNR{a[$1]=$2; next} {print $0, ($2 in a ? a[$2] : "NA")}' OFS='\t' phylum-Euryarchaeota.gene_annotations.filtered.tsv Euryarchaeota.dataset.tsv > Euryarchaeota.tsv
+This command subsequently matched the Contig ID to the corresponding gene ID file. The output file then lists the Biosample(Genome), Gene ID, Contig ID and additional EGGNOG annotations for each gene.
+In order to ease later concatenation of the files this file must also be pruned.
+The Column titled NA is subseqeuntly renamed Contig_ID and any rows where no Contig ID was able to be assigned were removed. These represent entries in Progenomes original database which were for various reasons unassigned a Contig ID. 
+
+Given the large size of the files involved for Proteobacteria, Firmicutes and Actinobacteria, additional steps had to be followed to allows for successful assembly of the file comprising the EGGNOG annotations, Gene ID and Contig ID.
+
+This initially involved parsing down their respective gene_annotation files.
+To obtain a list of representative genes the following commands were ran on the representative gene file from progenomes. This is available from https://progenomes.embl.de/data/repGenomes/progenomes3.genes.representatives.fasta.bz2
+
+1) bzcat progenomes3.genes.representatives.fasta.bz2 | pv | bzgrep '^>' > FASTA_HEADERS.txt
+
+This command initially removes the FASTA headers from each gene in the representative file.
+
+2) sed 's/<*//' FASTA_HEADERS.txt This command extracts just the Gene ID from the fasta headers file.
+
+3) cut -c2- FASTA_HEADERS.TXT > GeneIDS.txt
+
+This extracts the starting ">" from each Gene ID leaving it in the same formate as the EGGNOG annotation file.
+
+4) awk 'NR==FNR {GeneIDS_formatted[$1]; next } $1 in GeneIDS.txt phylum-Proteobacteria.gene_annotations_filtered.tsv > phylum-Proteobacteria.gene_annotations_parsed.tsv
+
+This command parsed down the gene annotation file to only include genes considered in the representative genes file, significantly reducing its' overall size. 
+
+5) awk -F'\t' 'NR==FNR{a[$1]=$2; next} {print $0, ($2 in a ? a[$2] : "NA")}' OFS='\t' phylum-Proteobacteria.gene_annotations_parsed.tsv Proteobacteria_dataset.tsv > Proteobacteria.tsv
+
+This final command takes our parsed gene annotations file and matches its contig ID with the corresponding Gene ID column in the EGGNOG annotations file. This step was repeated for each of the Firmicutes and Actinobacteria files.
+
+Once all 5 datasets for each phylum were produced the were concatenated using the following command
+
+7) awk 'FNR==1 && NR!=1 {next} {print}' Euryarchaeota.tsv Bacteriodetes.tsv Actinobacteria.tsv Firmicutes.tsv Proteobacteria.tsv > master_dataset.tsv
+
+8) sort -k1 master_dataset.tsv > sorted_dataset.tsv
+
+This last command sorts the dataset by the first column, ensuring the genomes' genes are in correct order for subsequent analysis
+
+9) awk -F'\t' '{
+  split($1, a, /\./);
+  new_col = a[2];
+  for (i=3; i<=length(a); i++) {
+    new_col = new_col "." a[i];
+  }
+  print $0 "\t" new_col
+}' master_dataset.tsv > dataset_noheader.tsv
+
+This command removed the Biosample ID from the first column of our dataset and added it to a new column corresponding to each row's biosample.For more efficient later coding the results obtained from the dataset can be searched against the GTDB biosample tsv file. Appending the GTDB file would have greatly increased the size of the Master dataset.
+
+10) head -n 1 Euryarchaeota.eggNOG_groups.tsv > dataset_header.tsv
+
+This command removes the header from the initial eggNOG file for modification and subsequent ammendment to the master dataset.
+
+11) cut -f1-6,9-13,15,18-20  dataset_header.tsv > dataset_headerv1.tsv
+
+This command removes the same columns as was done earlier from the eggNOG tsv file.
+
+12) awk -F'\t' -v OFS='\t' '{print $0, "CONTIG_ID", "GTDB_BIOSAMPLE"}' dataset_headerv1.tsv > dataset_headerv2.tsv
+
+This command adds two new columns to the dataset header reflecting the Contig ID column and biosample in GTDB format columns.
+
+12) awk 'FNR==1 @@ NR!=1 {next} {print}' dataset_headerv2.tsv sorted_dataset.tsv > Finished_dataset.tsv
+
+This final command amends the header to the final dataset, allowing for a reference to the contents of each column.
