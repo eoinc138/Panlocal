@@ -26,3 +26,12 @@ Execution of the Panlocal script requires initial assembly of the master dataset
 7) In the working directory with the annotation file for Firmicutes, Actinobacteria and Proteobacteria run the Proteobacteria_Actinobacteria_Firmicutes_executable.sh as the following input
 8) ./Proteobacteria_Actinobacteria_Firmicutes_executable.sh Biosample_IDs_filtered.txt Proteobacteria.eggNOG_groups.tsv phylum-Proteobacteria.gene_annotations.tsv GeneIDS.txt Proteobacteria.tsv
 9) Alter the input as appropriate for Firmicutes and Actinobacteria.
+10) To concatenate the phylums execute the Finished_dataset_processing.sh script in the working directory with each of the 5 phylums present.
+
+11) To prepare the GTDB file obtain the most recent Archaea and Bacterial taxonomy data from GTDB, available here, https://data.ace.uq.edu.au/public/gtdb/data/releases/latest/ar53_taxonomy.tsv.gz and here, https://data.ace.uq.edu.au/public/gtdb/data/releases/latest/bac120_taxonomy.tsv.gz for GTDB v220 release.
+12) In the same directory as these files execute GTDB_executable.sh
+
+13) To prepare the additional EGGNOG file obtain the annotations file for EGGNOG V4.5 here http://eggnog45.embl.de/download/eggnog_4.5/all_OG_annotations.tsv.gz
+14) In the same directory as this file execute EGGNOG_descriptions_executable.sh
+
+Lastly before running the Panlocal script as an executable ensure the directory you are using contains the Master dataset tsv, EGGNOG_freetext_description.tsv and the GTDB_taxonomy.tsv files.
