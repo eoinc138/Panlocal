@@ -1,4 +1,5 @@
 Execution of the Panlocal script requires initial assembly of the master dataset for either the individual phylums or the full concatenated dataset.
+## Creating representative genome annotation database
 1) Obtain the reference biosamples list by downloading the reference proteins file from Progenomes, available here:
 ```
 wget "https://progenomes.embl.de/data/repGenomes/progenomes3.proteins.representatives.fasta.bz2"
@@ -47,3 +48,7 @@ sh Euryarchaeota_Bacteroidetes_executable.sh Biosample_IDs_filtered.txt Euryarch
 15) In the same directory as this file execute EGGNOG_descriptions_executable.sh
 
 Lastly before running the Panlocal script as an executable ensure the directory you are using contains the Master dataset tsv, EGGNOG_freetext_description.tsv and the GTDB_taxonomy.tsv files.
+## Usage
+```
+python Panlocal.py
+```
