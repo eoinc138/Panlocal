@@ -94,8 +94,8 @@ def search_EGGNOG_matches(file_path, search_value, window_size, column_index, co
 
 # Set the working directory to our sample dataset
 current_directory = os.getcwd()
-file_path = current_directory + '/Finished_test_dataset.tsv'
-count_first_column_entries(current_directory + '/Finished_test_dataset.tsv', 'counts.txt')
+file_path = current_directory + '/Final_dataset.tsv'
+count_first_column_entries(current_directory + '/Final_dataset.tsv', 'counts.txt')
 chunk_sizes_file_path = current_directory + '/counts.txt'
 
 # Function to get the chunk sizes from the file
