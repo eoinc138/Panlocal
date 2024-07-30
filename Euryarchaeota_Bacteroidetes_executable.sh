@@ -27,4 +27,4 @@ awk -F'\t' 'NR==FNR{a[$1]=$2; next} {print $0, ($2 in a ? a[$2] : "NA")}' OFS='\
 #Removing temporary files from the directory
 rm "${output_prefix}.gene_annotations.filtered.tsv"
 rm "${output_prefix}.eggNOG_groups_filtered.tsv"
-rm "${output_prefix}.dataset.tsv
+rm "${output_prefix}.dataset.tsv"
