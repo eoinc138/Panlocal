@@ -10,7 +10,7 @@ wget "https://progenomes.embl.de/data/repGenomes/progenomes3.proteins.representa
 wget "https://progenomes.embl.de/data/repGenomes/progenomes3.genes.representatives.fasta.bz2"
 ```
 6) In your working directory execute
-``
+```
 sh gene_list_executable.sh
 ```
 to obtain the text file of reference biosample genes.
