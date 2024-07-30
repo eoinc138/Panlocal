@@ -50,8 +50,14 @@ wget "https://data.gtdb.ecogenomic.org/releases/latest/ar53_metadata.tsv.gz"
 ```
 GTDB_executable.sh
 ```
-17) To prepare the additional EGGNOG file obtain the annotations file for EGGNOG V4.5 here http://eggnog45.embl.de/download/eggnog_4.5/all_OG_annotations.tsv.gz
-18) In the same directory as this file execute EGGNOG_descriptions_executable.sh
+17) To prepare the additional EGGNOG file obtain the annotations file for EGGNOG V4.5 here 
+```
+wget "http://eggnog5.embl.de/download/eggnog_5.0/per_tax_level/1/1_annotations.tsv.gz"
+```
+18) In the same directory as this file execute
+```
+sh EGGNOG_descriptions_executable.sh
+```
 
 Lastly before running the Panlocal script as an executable ensure the directory you are using contains the Master dataset tsv, EGGNOG_freetext_description.tsv and the GTDB_taxonomy.tsv files.
 ## Usage
