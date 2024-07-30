@@ -41,11 +41,17 @@ sh Euryarchaeota_Bacteroidetes_executable.sh Biosample_IDs_filtered.txt Euryarch
 10) Alter the input as appropriate for Firmicutes and Actinobacteria.
 11) To concatenate the phylums execute the Finished_dataset_processing.sh script in the working directory with each of the 5 phylums present.
 
-12) To prepare the GTDB file obtain the most recent Archaea and Bacterial taxonomy data from GTDB, available here, https://data.ace.uq.edu.au/public/gtdb/data/releases/latest/ar53_taxonomy.tsv.gz and here, https://data.ace.uq.edu.au/public/gtdb/data/releases/latest/bac120_taxonomy.tsv.gz for GTDB v220 release.
-13) In the same directory as these files execute GTDB_executable.sh
-
-14) To prepare the additional EGGNOG file obtain the annotations file for EGGNOG V4.5 here http://eggnog45.embl.de/download/eggnog_4.5/all_OG_annotations.tsv.gz
-15) In the same directory as this file execute EGGNOG_descriptions_executable.sh
+12) To prepare the GTDB file obtain the most recent Archaea and Bacterial taxonomy data from GTDB, available here:
+```
+wget "https://data.gtdb.ecogenomic.org/releases/latest/bac120_metadata.tsv.gz"
+wget "https://data.gtdb.ecogenomic.org/releases/latest/ar53_metadata.tsv.gz"
+```
+15) In the same directory as these files execute
+```
+GTDB_executable.sh
+```
+17) To prepare the additional EGGNOG file obtain the annotations file for EGGNOG V4.5 here http://eggnog45.embl.de/download/eggnog_4.5/all_OG_annotations.tsv.gz
+18) In the same directory as this file execute EGGNOG_descriptions_executable.sh
 
 Lastly before running the Panlocal script as an executable ensure the directory you are using contains the Master dataset tsv, EGGNOG_freetext_description.tsv and the GTDB_taxonomy.tsv files.
 ## Usage
