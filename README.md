@@ -1,11 +1,14 @@
 Execution of the Panlocal script requires initial assembly of the master dataset for either the individual phylums or the full concatenated dataset.
-1) Obtain the reference biosamples list by downloading the reference proteins file from Progenomes, available here: https://progenomes.embl.de/data/repGenomes/progenomes3.proteins.representatives.fasta.bz2.
-2) In your working directory execute biosample_list_executable.sh to obtain the text file of reference biosamples.
-3) Obtain the reference gene list by downloading the reference gene file from Progenomes, available here: https://progenomes.embl.de/data/repGenomes/progenomes3.genes.representatives.fasta.bz2.
-4) In your working directory execute gene_list_executable.sh to obtain the text file of reference biosample genes.
-5) Ensure both the reference biosamples and reference gene list text files are present in your working directory for the subsequent steps.
+1) Obtain the reference biosamples list by downloading the reference proteins file from Progenomes, available here:
+'''
+https://progenomes.embl.de/data/repGenomes/progenomes3.proteins.representatives.fasta.bz2.
+'''
+3) In your working directory execute biosample_list_executable.sh to obtain the text file of reference biosamples.
+4) Obtain the reference gene list by downloading the reference gene file from Progenomes, available here: https://progenomes.embl.de/data/repGenomes/progenomes3.genes.representatives.fasta.bz2.
+5) In your working directory execute gene_list_executable.sh to obtain the text file of reference biosample genes.
+6) Ensure both the reference biosamples and reference gene list text files are present in your working directory for the subsequent steps.
 
-6) Depending on the dataset you wish to assemble download the following EGGNOG and Gene annotation lists below. Ensure a space of at least 3TB is available in your directory if you intend to use all 5 phylums.
+7) Depending on the dataset you wish to assemble download the following EGGNOG and Gene annotation lists below. Ensure a space of at least 3TB is available in your directory if you intend to use all 5 phylums.
   The gene annotations are available at the following links
   Proteobacteria: https://progenomes.embl.de/dumpAnnotation.cgi?p=Proteobacteria&t=ga&a=phylum
   Firmicutes: https://progenomes.embl.de/dumpAnnotation.cgi?p=Firmicutes&t=ga&a=phylum
