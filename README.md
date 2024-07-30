@@ -1,8 +1,8 @@
 Execution of the Panlocal script requires initial assembly of the master dataset for either the individual phylums or the full concatenated dataset.
 1) Obtain the reference biosamples list by downloading the reference proteins file from Progenomes, available here:
-'''
+```
 https://progenomes.embl.de/data/repGenomes/progenomes3.proteins.representatives.fasta.bz2.
-'''
+```
 3) In your working directory execute biosample_list_executable.sh to obtain the text file of reference biosamples.
 4) Obtain the reference gene list by downloading the reference gene file from Progenomes, available here: https://progenomes.embl.de/data/repGenomes/progenomes3.genes.representatives.fasta.bz2.
 5) In your working directory execute gene_list_executable.sh to obtain the text file of reference biosample genes.
