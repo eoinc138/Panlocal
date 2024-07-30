@@ -8,7 +8,7 @@ cut -f 20,53 ar53_metadata.tsv > arc_GTDB.tsv
 
 cat bac_GTDB.tsv arc_GTDB.tsv > GTDB.tsv
 
-tail -n +2 GTDB.tsv > GTDB_noheader.tsv
+grep -v "gtdb_taxonomy" GTDB.tsv > GTDB_noheader.tsv
 
 awk -F'\t' '{
  n = split($1, arr, ";")
