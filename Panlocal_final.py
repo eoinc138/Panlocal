@@ -124,6 +124,7 @@ print(f"Data saved to {output_file_path}") # Message to let the user know this p
 
 # In[194]:
 
+from collections import Counter
 
 #This directs the output from out initial search into a variable to be used in the following script.
 filename = output_file_path
@@ -517,6 +518,8 @@ if __name__ == "__main__":
 # and then converted to pdf
 #In the subsequent code <h1> and <h2> designate headers for each figure/table.
 # <div style="break-after:page"></div> is a page break for the pdf. Objects inserted are contained in each {}.
+
+import pdfkit
 
 html = f'''
 <html>
