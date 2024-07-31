@@ -35,12 +35,16 @@ to obtain the text file of reference biosample genes.
 ```
 sh Euryarchaeota_Bacteroidetes_executable.sh Biosample_IDs_filtered.txt Euryarchaeota.eggNOG_groups.tsv phylum-Euryarchaeota.gene_annotations.tsv Euryarchaeota.tsv
 ```
-   Alter the input as appropriate for Bacteroidetes
+Alter the input as appropriate for Bacteroidetes
 8) In the working directory with the annotation file for Firmicutes, Actinobacteria and Proteobacteria run the Proteobacteria_Actinobacteria_Firmicutes_executable.sh as the following input
-9) ./Proteobacteria_Actinobacteria_Firmicutes_executable.sh Biosample_IDs_filtered.txt Proteobacteria.eggNOG_groups.tsv phylum-Proteobacteria.gene_annotations.tsv GeneIDS.txt Proteobacteria.tsv
+```
+./Proteobacteria_Actinobacteria_Firmicutes_executable.sh Biosample_IDs_filtered.txt Proteobacteria.eggNOG_groups.tsv phylum-Proteobacteria.gene_annotations.tsv GeneIDS.txt Proteobacteria.tsv
+```
 10) Alter the input as appropriate for Firmicutes and Actinobacteria.
-11) To concatenate the phylums execute the Finished_dataset_processing.sh script in the working directory with each of the 5 phylums present.
-
+11) To concatenate the phylums execute the Finished_dataset_processing.sh script in the working directory with any of the 5 phyla present or only one if you intend to examine one phylum.
+```
+sh Finished_dataset_processing.sh Euryarchaeota.eggNOG_groups.tsv Euryarchaeota.tsv
+```
 12) To prepare the GTDB file obtain the most recent Archaea and Bacterial taxonomy data from GTDB, available here:
 ```
 wget "https://data.gtdb.ecogenomic.org/releases/latest/bac120_metadata.tsv.gz"
