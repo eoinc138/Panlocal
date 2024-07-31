@@ -435,6 +435,8 @@ with open(output_file, 'w', newline='') as f:
     writer.writerow(['EGGNOG ID', 'Count', 'Gene name', 'Description'])
     writer.writerows(data_to_sort)
 
+#The first 8 rows are shown in the terminal for the user.
+df = pd.read_csv(output_file, delimiter='\t')
 print(df.head(8))
 
 #Printing our results to a tsv file appropriately named.
