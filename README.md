@@ -56,7 +56,7 @@ GTDB_executable.sh
 ```
 17) To prepare the additional EGGNOG file obtain the annotations file for EGGNOG V4.5 here 
 ```
-wget "http://eggnog5.embl.de/download/eggnog_5.0/per_tax_level/1/1_annotations.tsv.gz"
+wget "http://eggnog45.embl.de/download/eggnog_4.5/data/NOG/NOG.annotations.tsv.gz"
 ```
 18) In the same directory as this file execute
 ```
