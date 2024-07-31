@@ -10,6 +10,7 @@ import re
 import os
 import pandas as pd
 import collections
+from collections import defaultdict
 
 # Querying user for input
 column_index = 12  # 13th column is where the EGGNOG annotations are kept for each gene.
