@@ -66,7 +66,7 @@ sh EGGNOG_descriptions_executable.sh
 ```
 sh COG_database_executable.sh
 ```
-21) Additional python modules are required to run Panlocal. These are as follows; numpy, matplotlib, collections, csv, os, re, pandas, base64, io, anytree and pdfkit. It is recommended to install pdfkit using !pip as it is known to run into errors when installed in a conda environment. 
+21) Additional python modules are required to run Panlocal. These are as follows; numpy, matplotlib, collections, csv, os, re, pandas, base64, io, anytree and Reportlab. It is recommended to install pdfkit using !pip as it is known to run into errors when installed in a conda environment. 
 Lastly before running the Panlocal script as an executable ensure the directory you are using contains the following files; Finished_dataset.tsv, EGGNOG_IDS.tsv, GTDB_taxonomy.tsv and COGnarCOG_descriptors.tsv.
 ## Usage
 ```
