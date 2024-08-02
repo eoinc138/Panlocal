@@ -311,7 +311,7 @@ repeat_process = True
 while repeat_process:
     #Querying the user for gene to use in the refined search and how large of a search window to define
     second_value = input('What gene would you like to consider as a second search?') + "@1"
-    windows_size = int(input('How large of a search window would you like to consider around gene 1?'))
+    windows_size = int(input('How large of a search window would you like to consider around gene 1?, Note: This window must be either equal to or smaller than the previous window.'))
 
     #Setting the variables for the second search function.
     file_path = current_directory + "/" + output_file_path
